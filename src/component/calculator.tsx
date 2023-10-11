@@ -148,5 +148,68 @@ function ButtonGenerator(val:string | number, type?: 'operator') {
   }
 
   return <>
+    <Card
+      elevation={3}
+      sx={{
+        width: '340px',
+        height: '550px',
+        borderRadius:2,
+        bgcolor:'grey',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        justifySelf: 'center',
+        alignSelf: 'center',
+      }}
+      >
+        <Box>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          width: '100%',
+          gap: 2,
+        }}
+        id = 'header'
+        >
+      </Box>
+      <Box
+        sx={{
+          p:2,
+          display: 'flex',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          backgroundColor: '#000',
+          color: '#fff',
+          fontSize: '2rem',
+          fontWeight: 'bold',
+          margin: 1,
+          borderRadius: 3,
+          minHeight: '150px'
+        }}
+        data-testId = 'screen'
+        >
+        {monitor}
+        </Box>
+        </Box>
+        <Box
+          id='keypad'
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateRows: 'repeat(5, 1fr)',
+            gap: '10px',
+            padding: '10px'
+          }}
+        >
+          {
+            numbers.map((num, index) => {
+              return ButtonGenerator(num, typeof num === 'number' ? undefined : 'operator')
+            })
+
+          }
+        </Box>
+      </Card>
   </>
 }
