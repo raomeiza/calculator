@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import Login from './login'
 import HistoryPane from './HistoryPane'
 import { UserContext } from '../context/userContext'
+import { apiRootUrl } from '../config'
 
 const numbers = ['AC', '%', '.', '/', 9, 8, 7, '*', 6, 5, 4,'-', 3, 2, 1,'+', 0, '=']
 export default function Calculator() {
@@ -52,7 +53,7 @@ function ButtonGenerator(val:string | number, type?: 'operator') {
 
     // store to server
     if (user) {
-      fetch('http://localhost:5000/calculator/save', {
+      fetch(`${apiRootUrl}/user/calculations/save`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

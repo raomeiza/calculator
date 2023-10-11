@@ -4,6 +4,7 @@ import { Box, Divider, IconButton, TextField, Typography, Slide } from '@mui/mat
 import { UserContext } from '../context/userContext';
 import { ArrowDown, History } from './svg/icons';
 import SlideContainer from './SlideContainer';
+import { apiRootUrl } from '../config';
 export default function Login(props: any) {
 	const { open, setOpen } = props;
 	const { user, login } = React.useContext(UserContext);
@@ -23,11 +24,11 @@ export default function Login(props: any) {
 		let data: { email: string; password: string; name?: string; repeatPassword?: string };
 		event.preventDefault();
 		if (isRegistered) {
-			url = 'http://localhost:5000/user/login';
+			url = `${apiRootUrl}/user/register`
 			data = { email, password };
 		} else {
 			data = { name, email, password, repeatPassword };
-			url = 'http://localhost:5000/user/register';
+			url = `${apiRootUrl}/user/login`
 		}
 		// make simple validation
 		if (!email || !password) {

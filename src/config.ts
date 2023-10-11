@@ -1,0 +1,1 @@
+export const apiRootUrl = 'https://calc-server-f8vm.onrender.com'
