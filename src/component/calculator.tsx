@@ -173,6 +173,7 @@ function ButtonGenerator(val:string | number, type?: 'operator') {
         }}
         id = 'header'
         >
+          { !user ? <Login open={openLogin} setOpen={setOpenLogin}/> : <HistoryPane open={openLogin} setOpen= {setOpenLogin} />}
       </Box>
       <Box
         sx={{
