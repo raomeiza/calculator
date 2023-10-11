@@ -1,13 +1,12 @@
 import './App.css';
 import Calculator from './component/calculator';
-import { LightModeProvider } from './context/lightModeContext';
-
+import { UserProvider } from './context/userContext';
 export default function App() {
   return (
     <div className="App">
-      <LightModeProvider>
+      <UserProvider>
         <Calculator />
-      </LightModeProvider>
+      </UserProvider>
     </div>
   );
 }
