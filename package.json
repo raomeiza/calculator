@@ -1,6 +1,6 @@
 {
   "name": "calculator",
-  "homepage": "https://jocunda.github.io/calculator/",
+  "homepage": "/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

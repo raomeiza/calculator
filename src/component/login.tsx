@@ -24,11 +24,11 @@ export default function Login(props: any) {
 		let data: { email: string; password: string; name?: string; repeatPassword?: string };
 		event.preventDefault();
 		if (isRegistered) {
-			url = `${apiRootUrl}/user/register`
+			url = `${apiRootUrl}/user/login`
 			data = { email, password };
 		} else {
 			data = { name, email, password, repeatPassword };
-			url = `${apiRootUrl}/user/login`
+			url = `${apiRootUrl}/user/register`
 		}
 		// make simple validation
 		if (!email || !password) {
@@ -38,7 +38,7 @@ export default function Login(props: any) {
 		if (!isRegistered && password !== repeatPassword) {
 			setErrorMessage('Passwords do not match');
 			return;
-		}
+		} 
 		setIsLoading(true);
 		fetch(url, {
 			method: 'POST',
