@@ -32,7 +32,7 @@ Basic calculator operation with server for storing user's calculation history.
 - run `npm start` to start the project
 
 **Screenshots**
-- [calculator]()
-
-
-<img src="https://github.com/jocunda/calculator/blob/master/src/assets/calculator.jpg" width="350px">
+- [calculator](https://github.com/raomeiza/calculator/blob/main/public/calculator.png
+- [login](https://github.com/raomeiza/calculator/blob/main/public/login.png)
+- [register](https://github.com/raomeiza/calculator/blob/main/public/register.png)
+- [history](https://github.com/raomeiza/calculator/blob/main/public/history.png)
