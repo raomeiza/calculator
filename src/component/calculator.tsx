@@ -53,7 +53,7 @@ function ButtonGenerator(val:string | number, type?: 'operator') {
 
     // store to server
     if (user) {
-      fetch(`${apiRootUrl}/user/calculations/save`, {
+      fetch(`${apiRootUrl}/calculator/save`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
