@@ -1,5 +1,8 @@
 import React, { createContext, useState } from "react"
-
+interface IUser {
+    names: string
+    email: string
+}
 const initalUserContextValue = {
     user: null,
     token: null,
@@ -8,9 +11,9 @@ const initalUserContextValue = {
     setToken: (token: string) => { }
 }
 const UserContext = createContext<{
-    user: null | object;
+    user: null | IUser;
     token: null | string
-    login: (email: string, token: string) => void;
+    login: (email: string, name: string, token: string) => void;
     logout: () => void;
     setToken: (token: string) => void
 }>(initalUserContextValue);
@@ -20,14 +23,13 @@ type Props = {
 }
 
 function UserProvider({ children }: Props) {
-    const [user, setUser] = useState<null | object>(null);
+    const [user, setUser] = useState<null | IUser>(null);
     const [token, setToken] = useState<null | string>(null);
     const logout = () => {
         setUser(null)
     }
-    const login = (email: string, token: string) => {
-        console.log(email, token)
-        setUser({ email })
+    const login = (email: string, names: string, token: string) => {
+        setUser({ email, names })
         setToken(token)
     }
 

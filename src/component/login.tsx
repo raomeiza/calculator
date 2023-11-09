@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Button from '@mui/material/Button';
-import { Box, Divider, IconButton, TextField, Typography, Slide } from '@mui/material';
+import { Box, Divider, IconButton, TextField, Typography, Slide, Card } from '@mui/material';
 import { UserContext } from '../context/userContext';
-import { ArrowDown, History } from './svg/icons';
-import SlideContainer from './SlideContainer';
 import { apiRootUrl } from '../config';
 export default function Login(props: any) {
 	const { open, setOpen } = props;
@@ -52,7 +50,7 @@ export default function Login(props: any) {
 				if (!data.success) { throw data }
 				const { user, token } = data.data;
 					setIsLoading(false);
-					login(user.email, token);
+					login(user.email, '', token);
 			})
 			.catch((err) => {
 				setIsLoading(false);
@@ -60,8 +58,36 @@ export default function Login(props: any) {
 			});
 	};
 
+	const mockLogin = (e: React.FormEvent) => {
+		e.preventDefault()
+		setErrorMessage('')
+		// valiated inputs 
+		if (!email || !password) {
+			setErrorMessage('Please fill in all fields');
+			return;
+		}
+		if (!isRegistered && password !== repeatPassword) {
+			setErrorMessage('Passwords do not match');
+			return;
+		} 
+		setIsLoading(true);
+		if(!errorMessage){
+			login(email, 'aom', password);
+		}
+
+	}
+
 	return (
-		<SlideContainer open={open} setOpen={setOpen}>
+		<Card elevation={4} 
+			sx={{
+				display: 'flex',
+				flexDirection: 'column',
+				justifyContent: 'center',
+				alignItems: 'center',
+				padding: 3,
+				borderRadius: 3
+			}}
+		>
 				<Box
 					sx={{
 						display: 'flex',
@@ -69,13 +95,12 @@ export default function Login(props: any) {
 						justifyContent: 'center',
 						alignItems: 'center',
 						gap: 2,
-						width: '100%',
-						height: open ? '480px' : 0,
+						width: '300px',
 					}}
 					component={'form'}
-			onSubmit={handleSubmit}
+			onSubmit={mockLogin}
 				>
-					<Typography variant="h5" >{isRegistered ? 'Login' : 'Register'}</Typography>
+					<Typography variant="h3" >{isRegistered ? 'Login' : 'Register'}</Typography>
 					<TextField
 						label="Email"
 						variant="outlined"
@@ -133,6 +158,6 @@ export default function Login(props: any) {
 						</Button>
 					</Typography>
 				</Box>
-		</SlideContainer>
+				</Card>
 	);
 }
