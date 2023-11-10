@@ -6,4 +6,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+  /* scroll bar */
+  ::-webkit-scrollbar {
+    width: 6px;
+
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: 'none';
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3645d1;
+  }
 }

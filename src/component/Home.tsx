@@ -1,37 +1,32 @@
 import * as React from 'react'
-import { Container, Typography, Button, Grid, Box } from '@mui/material'
-import Appbar from './Appbar'
 import MiniDrawer, { DrawerHeader } from './MiniDrawer'
 import { UserContext } from '../context/userContext';
-import Login from './login';
-import SubscriptionPlans from './SubscriptionPlans';
-import Dashboard from './Dashboard';
+import Landing from './landing';
+import Box from '@mui/material/Box';
+import Products from './products';
+import Contact from './contact';
+import Team from './team';
+import About from './about';
 
 export default function Home() {
   const { user, token } = React.useContext(UserContext);
 
   return (
-    user ? (
-    <Container
-      sx={{
-        width: {sm: '100%', md: '500px'}
-      }}
-    >
+    <Box>
+      <Landing id='Home'/>
+      <Products id='Products'/> 
+      <Team id='Team'/>
+      <About id='About'/>
+      <Contact id='Contact'/>
       <MiniDrawer />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <Dashboard />
-      <SubscriptionPlans />
-      <Typography variant="h2" component="h1" gutterBottom>
-        Calculator
-      </Typography>
-        <DrawerHeader />
-          <Button variant="outlined" color="primary" href="/about">
-            About
-          </Button>
+      <Box
+        sx={{
+          height: '100vh'
+        }}
+        
+      >
+
       </Box>
-    </Container>
-    ) : (
-      <Login />
-    )      
+    </Box>
   )
 }

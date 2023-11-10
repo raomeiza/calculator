@@ -12,6 +12,8 @@ import ListItemText from '@mui/material/ListItemText';
 import MailIcon from '@mui/icons-material/Mail';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
+import linksArray from './linksArray';
+import { Link } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -24,38 +26,31 @@ interface Props {
 }
 
 export default function ResponsiveDrawer(props: { open: boolean, toggleDrawer: any, window: any }) {
-  console.log(props.open)
   const { window } = props;
 
   const drawer = (
     <div>
-      <Toolbar />
+      <Toolbar
+        sx={{
+          fontSize: '2rem',
+          fontWeight: 'bold',
+        }}
+      >LANDING</Toolbar>
       <Divider />
       <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
+        {linksArray.map((text, index) => (
+          <ListItem key={text} disablePadding
+            component={Link}
+            href={`#${text}`}
+            onClick={props.toggleDrawer}
+          >
+            <ListItemButton selected = {window.location.hash === `#${text}`}>
               <ListItemText primary={text} />
             </ListItemButton>
           </ListItem>
         ))}
       </List>
       <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
     </div>
   );
 
@@ -73,19 +68,11 @@ export default function ResponsiveDrawer(props: { open: boolean, toggleDrawer: a
             // display: { xs: 'block', sm: 'none' },
             '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
           }}
+          anchor="right"
         >
           {drawer}
         </Drawer>
-        {/* <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: 'none', sm: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-          open={props.open}
-        >
-          {drawer}
-        </Drawer> */}
+        
       </Box>
   );
 }
